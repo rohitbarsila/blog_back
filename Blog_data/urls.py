@@ -5,12 +5,13 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register('heroes',views.HeroViewSet)
+router.register('post',views.Post , basename='post')
 
 urlpatterns = [
     path('api/login', login),
     path('api/register', register),
     path('api/post', posts),
     path('api/comment', comment),
+    path('data', views.bdb.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

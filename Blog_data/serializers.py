@@ -6,4 +6,4 @@ class Post(serializers.ModelSerializer):
 
     class Meta:
         model = post
-        fields = ('name', 'title','content','status','tag')
+        fields = '__all__' #('name', 'title','content','status','tag')

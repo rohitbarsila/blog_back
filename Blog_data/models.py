@@ -40,7 +40,7 @@ class post(models.Model):
     created=models.DateTimeField(auto_now_add=True)
     modified=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return str(self.title)
+        return str(self.title) + ' | ' + self.name.user.username
 
 class comment(models.Model):
     name=models.ForeignKey(post,on_delete=models.CASCADE)

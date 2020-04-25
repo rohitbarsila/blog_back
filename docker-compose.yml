@@ -4,11 +4,11 @@ services:
   web:
     restart: "always"
     build:
-      context: ./Services/django
+      context: .
       dockerfile: Dockerfile
     volumes:
-      -  ./Services/django/:/usr/src/app/
-      - static_volume:/usr/src/app/Services/django/static
+      -  .:/usr/src/app/
+      - static_volume:/usr/src/app/static
     ports:
       - 8000
     env_file:
@@ -23,7 +23,7 @@ services:
     environment:
       - POSTGRES_USER=rocker
       - POSTGRES_PASSWORD=corona
-      - POSTGRES_DB=FakeNews_db
+      - POSTGRES_DB=back_db
 
   nginx:
     build:
@@ -32,8 +32,8 @@ services:
     ports:
       - 1337:80
     volumes:
-      - static_volume:/usr/src/app/Services/django/static
-      - media_volume:/usr/src/app/Services/django/mediafiles
+      - static_volume:/usr/src/appstatic
+      - media_volume:/usr/src/app/mediafiles
     depends_on:
       - web
 

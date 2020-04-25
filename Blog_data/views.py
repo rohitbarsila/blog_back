@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .serializers import Post
+from rest_framework import generics
 from django.db import IntegrityError
 from .models import UserProfile,tags,post,comment
 from django.contrib.auth import authenticate
@@ -12,13 +13,16 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND,
     HTTP_200_OK
 )
+from rest_framework import filters
 from django.contrib.auth.models import User
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication,TokenAuthentication
 from rest_framework.response import Response
 from rest_framework import viewsets
-
-class HeroViewSet(viewsets.ModelViewSet):
-    queryset = post.objects.all().order_by('name')
+@permission_classes((AllowAny,))
+class bdb(generics.ListCreateAPIView):
+    search_fields = ['content']
+    filter_backends = (filters.SearchFilter,)
+    queryset = post.objects.all()
     serializer_class = Post
 
 

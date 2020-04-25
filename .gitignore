@@ -1,3 +1,7 @@
 .idea
 .venv
 .gitignore
+static/
+templates/
+venv/Include/
+venv/Lib/
