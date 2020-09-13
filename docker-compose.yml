@@ -32,7 +32,7 @@ services:
     ports:
       - 1337:80
     volumes:
-      - static_volume:/usr/src/appstatic
+      - static_volume:/usr/src/app/static
       - media_volume:/usr/src/app/mediafiles
     depends_on:
       - web
